@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <!-- insert your AIML categories here -->
+  <category>
+      <pattern>HELLO</pattern>
+      <template>Hello, Sassu.</template>
+  </category>
+  <category>
+      <pattern>HI</pattern>
+      <template><srai>HELLO</srai></template>
+  </category>
+  <category>
+      <pattern>DO YOU LIKE BANANAS</pattern>
+      <template>I think bananas are squishy.</template>
+  </category>
+  <category>
+      <pattern>ASK ME A QUESTION</pattern>
+      <template>Are you fat?</template>
+  </category>
+  <category>
+      <pattern>I AM NOT FAT</pattern>
+      <template>Ok.</template>
+  </category>
+</aiml>
