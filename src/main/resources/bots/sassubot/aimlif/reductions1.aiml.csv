@@ -1764,7 +1764,6 @@
 0,WHAT IS YOUR NAME,*,*,<srai>NAME</srai>,reductions1.aiml
 0,_ JUST *,*,*,<srai><star/> <star index="2"/></srai>,reductions1.aiml
 0,OK,*,*,<srai>YES</srai>,reductions1.aiml
-0,HELLO,*,*,<srai>HI</srai>,reductions1.aiml
 0,911,*,*,<srai>CALL 911</srai>,reductions1.aiml
 0,NO,*,*,<srai>INTERJECTION</srai>,reductions1.aiml
 0,YES,*,*,<srai>INTERJECTION</srai>,reductions1.aiml

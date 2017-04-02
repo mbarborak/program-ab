@@ -43,13 +43,13 @@ import org.slf4j.LoggerFactory;
 public class Main {
 	private static final Logger log = LoggerFactory.getLogger(Main.class);
     public static void main (String[] args) {
-        MagicStrings.root_path = System.getProperty("user.dir");
+        MagicStrings.root_path = "./src/main/resources"; //System.getProperty("user.dir");
         log.info("Working Directory = " + MagicStrings.root_path);
         AIMLProcessor.extension =  new PCAIMLProcessorExtension();
         mainFunction(args);
     }
     public static void mainFunction (String[] args) {
-        String botName = "super";
+        String botName = "sassubot"; //"super";
         String action = "chat";
         log.info(MagicStrings.programNameVersion);
         for (String s : args) {
