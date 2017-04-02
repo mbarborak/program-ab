@@ -24,6 +24,8 @@ public class Service {
 
 	static public void main(String[] args) {
 		ResourceConfig rc = new ResourceConfig().packages("com.barborak");
+		rc.register(CORSResponseFilter.class)
+		;
 		HttpServer server;
 		try {
 			server = GrizzlyHttpServerFactory.createHttpServer(BASE_URL.toURI(), rc, false);
