@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>Sassubot</title>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700'
+	rel='stylesheet' type='text/css'>
+<style>
+.popup-tab {
+	position: fixed;
+	right: 50px;
+	bottom: 0px;
+	padding: 10px 10px 5px 10px;
+	background-color: #5b6fc7;
+	color: #FFF;
+	height: 40px;
+	width: 250px;
+	z-index: 200;
+	cursor: pointer;
+	-moz-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	color: #ffffff;
+}
+
+.popup-wrapper {
+	position: fixed;
+	background-color: #FFFFFF;
+	right: 50px;
+	bottom: 0px;
+	padding: 0px;
+	height: 410px;
+	width: 250px;
+	z-index: 200;
+	-moz-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.popup-header {
+	background-color: #5b6fc7;
+	color: #ffffff;
+	height: 10%;
+	padding: 10px 10px 5px 10px;
+	-moz-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.close-chat, .minimize-chat {
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.convo {
+	height: 320px;
+	padding: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #eeeeee;
+}
+
+.chatlog {
+	width: 750px;
+	height: 300px;
+	padding: 5px;
+	border: 1px solid #000000;
+}
+
+.scroll {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.humanMessage {
+	background-color: #5b6fc7;
+	position: relative;
+	color: #FFF;
+	padding: 5px;
+	margin: 5px;
+	display: inline-block;
+	float: right;
+	-moz-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+}
+
+.botMessage {
+	background-color: #eeeeee;
+	position: relative;
+	padding: 5px;
+	margin: 5px;
+	display: inline-block;
+	-moz-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+}
+
+.agentMessage {
+	background-color: #5cb85c;
+	position: relative;
+	padding: 5px;
+	margin: 5px;
+	display: inline-block;
+	-moz-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+}
+
+.popup-input {
+	padding: 5px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+
+.hidden {
+	display: none;
+}
+</style>
+</head>
+<body>
+	<div class="popup-wrapper">
+		<div class="popup-header">
+			<b>Talk to <span class="botname">sassubot</span></b> <span
+				class="close-chat pull-right glyphicon glyphicon-remove"></span> <span
+				class="minimize-chat pull-right glyphicon glyphicon-minus"></span>
+		</div>
+		<div class="popup-chat">
+<!-- 	<div class="response hidden"></div> -->       
+			<div class="convo scroll"></div>
+			<div class="popup-input">
+				<form class="talk boxedin">
+					<input name="req" class="yousay form-control" type="text"
+						placeholder="You say..." autofocus="">
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+	    function chat(theUrl, data) {
+	        var resolve;
+	        var promise = new Promise(r => resolve = r);
+	        var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    resolve(xmlHttp.responseText);
+            }
+            xmlHttp.open("POST", theUrl, true); 
+	        xmlHttp.setRequestHeader("Content-type", "text/plain");
+	        xmlHttp.send(data);
+	        return promise;
+	    }    
+	    
+	   var el = document.querySelector(".talk");
+	   el.addEventListener("submit", evt => {
+		   var req = el.req.value;
+		   el.req.value = "";
+		   evt.preventDefault();
+		   chat("http://localhost:8080/com.barborak/chatbot", req)
+		   .then(rep => {
+			   var c = document.querySelector(".convo");
+			   
+			   var s = document.createElement("span");
+			   s.classList.add("humanMessage");
+			   s.textContent = req;
+			   
+			   c.append(s);
+			   c.append(document.createElement("br"));
+			   
+               s = document.createElement("span");
+               s.classList.add("botMessage");
+               s.textContent = rep;
+               
+               c.append(s);
+               c.append(document.createElement("br"));
+		   });
+		   return false;
+	   });
+	</script>
+</body>
+</html>

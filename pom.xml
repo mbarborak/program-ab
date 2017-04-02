@@ -11,6 +11,7 @@
 		<httpclient.version>4.2.5</httpclient.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jersey.version>2.17</jersey.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -21,7 +22,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	<distributionManagement>
+<!-- 	<distributionManagement>
 		<snapshotRepository>
 			<id>soluvas-public-snapshots</id>
 			<url>http://nexus.bippo.co.id/nexus/content/repositories/soluvas-public-snapshots/</url>
@@ -31,65 +32,82 @@
 			<url>http://nexus.bippo.co.id/nexus/content/repositories/soluvas-public-releases/</url>
 		</repository>
 	</distributionManagement>
-	<dependencies>
-<!-- 	    <dependency> -->
-<!-- 	    	<groupId>commons-codec</groupId> -->
-<!-- 	    	<artifactId>commons-codec</artifactId> -->
-<!-- 	    	<version>1.7</version> -->
-<!-- 	    </dependency> -->
-	    <dependency>
-	    	<groupId>org.slf4j</groupId>
-	    	<artifactId>slf4j-api</artifactId>
-	    	<version>${slf4j.version}</version>
-	    </dependency>
-	    <dependency>
-	    	<groupId>org.slf4j</groupId>
-	    	<artifactId>jcl-over-slf4j</artifactId>
-	    	<version>${slf4j.version}</version>
-	    	<scope>runtime</scope>
-	    </dependency>
-	    <dependency>
-	    	<groupId>ch.qos.logback</groupId>
-	    	<artifactId>logback-classic</artifactId>
-	    	<version>1.0.13</version>
-	    	<optional>true</optional>
-	    </dependency>
-	    <dependency>
-	    	<groupId>org.apache.httpcomponents</groupId>
-	    	<artifactId>httpclient</artifactId>
-	    	<version>${httpclient.version}</version>
-	    </dependency>
-<!-- 	    <dependency> -->
-<!-- 	    	<groupId>org.apache.httpcomponents</groupId> -->
-<!-- 	    	<artifactId>httpclient-cache</artifactId> -->
-<!-- 	    	<version>${httpclient.version}</version> -->
-<!-- 	    </dependency> -->
-<!-- 	    <dependency> -->
-<!-- 	    	<groupId>org.apache.httpcomponents</groupId> -->
-<!-- 	    	<artifactId>fluent-hc</artifactId> -->
-<!-- 	    	<version>${httpclient.version}</version> -->
-<!-- 	    </dependency> -->
-	    <dependency>
-	    	<groupId>joda-time</groupId>
-	    	<artifactId>joda-time</artifactId>
-	    	<version>2.3</version>
-	    </dependency>
-	    <dependency>
-	    	<groupId>org.json</groupId>
-	    	<artifactId>json</artifactId>
-	    	<version>20090211</version>
-	    </dependency>
-	    <dependency>
-	    	<groupId>net.reduls.sanmoku</groupId>
-	    	<artifactId>sanmoku</artifactId>
-	    	<version>0.0.5</version>
-	    </dependency>
-	    <dependency>
-	    	<groupId>net.reduls.sanmoku</groupId>
-	    	<artifactId>sanmoku-feature-ex</artifactId>
-	    	<version>0.0.1</version>
-	    </dependency>
-	</dependencies>
+ -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+ 	<dependencies>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+        </dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>commons-codec</groupId> -->
+		<!-- <artifactId>commons-codec</artifactId> -->
+		<!-- <version>1.7</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.httpcomponents</groupId> -->
+		<!-- <artifactId>httpclient-cache</artifactId> -->
+		<!-- <version>${httpclient.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.httpcomponents</groupId> -->
+		<!-- <artifactId>fluent-hc</artifactId> -->
+		<!-- <version>${httpclient.version}</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
+		<dependency>
+			<groupId>net.reduls.sanmoku</groupId>
+			<artifactId>sanmoku</artifactId>
+			<version>0.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>net.reduls.sanmoku</groupId>
+			<artifactId>sanmoku-feature-ex</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+ 	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
