@@ -1,3 +1,13 @@
+# Customizations for barborak.com
+
+Prior to using Google App Engine (see my repo barborak-appengine), I ran this as a service on a virtual server. That explains the classes in the `com.barborak` package. Run the `main` method in `com.barborak.Service`, i.e.,
+
+```
+nohup java -cp ab-4.0.4-SNAPSHOT-jar-with-dependencies.jar com.barborak.Service
+```
+
+Then see `sample.html` for an example of how to call it from a webpage.
+
 # Program AB: Hendy's fork
 
 Fork of [Program AB](http://alicebot.blogspot.co.id/2013/01/program-ab-aiml-20-reference.html), the reference implementation of the AIML 2.0 draft specification. AIML is a widely adopted standard for creating chat bots and mobile virtual assistants like ALICE, Mitsuku, English Tutor, The Professor, S.U.P.E.R. and many more.
